@@ -27,4 +27,3 @@ Browser(via CDN)
     const { BushaRamp } = window.BushaRampWeb
 </script>
 ```
-# ramp-web-sdk
