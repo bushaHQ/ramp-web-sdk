@@ -1,4 +1,4 @@
-import { object, number, string } from "yup";
+import { object, string } from "yup";
 
 import { dark } from "./constants/colors";
 import {
@@ -10,7 +10,7 @@ import {
   IFRAME_ID,
   FORM_ID,
 } from "./constants/variables";
-import { BushaCommercePayload } from "./types";
+import { QuotePayload } from "./types";
 import { close } from "./constants/icons";
 
 export function injectGlobalStyles() {
@@ -38,26 +38,42 @@ export function injectGlobalStyles() {
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
+      #${IFRAME_ID} {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 480px;
+        max-width: 100%;
+        height: 100dvh;
+        z-index: 20;
+        border-radius: 0px;
+        
+        @media (min-width: 640px) {
+          height: 680px;
+          border-radius: 24px;
+        }
+      }
     `;
 
   // return styleEl;
 }
 
-export function validatePayload(p: BushaCommercePayload) {
-  const chargePayloadSchema = object({
-    local_amount: number().required(),
-    local_currency: string().required(),
-    public_key: string().required(),
-    reference: string().optional(),
+export function validatePayload(p: QuotePayload) {
+  const quotePayloadSchema = object({
+    fiatAmount: string().optional(),
+    fiatCurrency: string().optional(),
+    cryptoAmount: string().optional(),
+    cryptoCurrency: string().optional(),
+    publicKey: string(),
+    redirectUrl: string().optional(),
+    side: string().oneOf(["buy", "sell"]).required(),
     // callback_url: string(), //.required(),
     // mode: string().matches(/(test|live)/),
-    meta: object({
-      email: string().email(),
-      name: string(),
-    }).optional(),
   });
 
-  return chargePayloadSchema.validateSync(p);
+  return quotePayloadSchema.validateSync(p);
 }
 
 export function createContainerEl() {
@@ -121,59 +137,39 @@ export function createIframeEl() {
 
   iframeEl.dataset.testid = IFRAME_ID;
   iframeEl.name = IFRAME_ID;
+  iframeEl.id = IFRAME_ID;
   iframeEl.allow = `clipboard-write self ${PAY_UI}`;
-  iframeEl.style.width = "100%";
-  // iframeEl.style.maxWidth = "100%";
-  iframeEl.style.height = "100%";
-  // iframeEl.style.border = "red";
-  iframeEl.style.position = "absolute";
-  iframeEl.style.left = "50%";
-  iframeEl.style.top = "0px";
-  iframeEl.style.transform = "translate(-50%, 0)";
-  iframeEl.style.zIndex = "20";
 
   return iframeEl;
 }
 
-type FormPayload = Omit<BushaCommercePayload, "onClose" | "onSuccess">;
+type FormPayload = Omit<QuotePayload, "onClose" | "onSuccess">;
 
 export function createFormEl(payload: FormPayload) {
   const formEl = document.createElement("form");
   formEl.target = IFRAME_ID;
   formEl.dataset.testid = FORM_ID;
   formEl.action = PAY_UI ?? "";
-  formEl.method = "POST";
+  formEl.method = "GET";
   formEl.style.display = "none";
 
   const parsePayload = (p: FormPayload) => {
-    for (const key in payload) {
-      if (!payload.hasOwnProperty(key)) continue;
+    for (const key in p) {
+      if (!Object.prototype.hasOwnProperty.call(p, key)) continue;
 
-      const paymentParamValue = payload[key as keyof FormPayload];
+      const paymentParamValue = p[key as keyof FormPayload];
 
-      if (typeof paymentParamValue === "object") {
-        for (const _key in paymentParamValue) {
-          if (!paymentParamValue.hasOwnProperty(_key)) continue;
+      const inputEl = document.createElement("input");
+      inputEl.name = key;
+      inputEl.value = String(paymentParamValue);
 
-          const inputEl = document.createElement("input");
-          inputEl.name = `${key}[${_key}]`;
-          inputEl.value = String((paymentParamValue as any)[_key]);
-
-          formEl.appendChild(inputEl);
-        }
-      } else {
-        const inputEl = document.createElement("input");
-        inputEl.name = key;
-        inputEl.value = String(paymentParamValue);
-
-        formEl.appendChild(inputEl);
-      }
+      formEl.appendChild(inputEl);
     }
   };
 
   parsePayload(payload);
 
-  const displayMode = "INLINE";
+  const displayMode = "POPUP";
 
   const displayModeInputEl = document.createElement("input");
   displayModeInputEl.name = "displayMode";

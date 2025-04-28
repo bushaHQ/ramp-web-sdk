@@ -25,5 +25,13 @@ Browser(via CDN)
 
 <script>
     const { BushaRamp } = window.BushaRampWeb
+
+    const ramp = new BushaRamp({
+        publicKey: "pk_1234",
+        onSuccess: () => {},
+        onClose: () => {},
+    })
+
+    ramp.show();
 </script>
 ```
