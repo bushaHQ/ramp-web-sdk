@@ -27,7 +27,7 @@ Browser(via CDN)
     const { BushaRamp } = window.BushaRampWeb
 
     const ramp = new BushaRamp({
-        publicKey: "pk_1234",
+        publicKey: "pub_1S34",
         side: "buy",
         onSuccess: () => {},
         onClose: () => {},

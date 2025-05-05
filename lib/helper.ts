@@ -66,14 +66,12 @@ export function validatePayload(p: QuotePayload) {
     fiatCurrency: string().optional(),
     cryptoAmount: string().optional(),
     cryptoCurrency: string().optional(),
-    publicKey: string(),
+    publicKey: string().required("Public key is required"),
     redirectUrl: string().optional(),
     side: string().oneOf(["buy", "sell"]).required(),
-    // callback_url: string(), //.required(),
-    // mode: string().matches(/(test|live)/),
   });
 
-  return quotePayloadSchema.validateSync(p);
+  quotePayloadSchema.validateSync(p, { abortEarly: false });
 }
 
 export function createContainerEl() {
