@@ -13,4 +13,22 @@ export default defineConfig({
       lib: path.resolve(__dirname, "lib"),
     },
   },
+
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, "lib/index.ts"),
+      name: "BushaRampWebSDK",
+      fileName: (format) => `index.${format}.js`,
+      formats: ["es", "umd"],
+    },
+    rollupOptions: {
+      external: ["react", "react-dom"],
+      output: {
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+      },
+    },
+  },
 });

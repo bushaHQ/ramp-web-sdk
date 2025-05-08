@@ -24,9 +24,9 @@ Browser(via CDN)
 <script src="https://cdn.jsdelivr.net/npm/@busha/ramp-web/dist/index.min.js"></script>
 
 <script>
-    const { BushaRamp } = window.BushaRampWeb
+    const { BushaRampWidget } = window.BushaRampWeb
 
-    const ramp = new BushaRamp({
+    const ramp = new BushaRampWidget({
         publicKey: "pub_1S34",
         side: "buy",
         onSuccess: () => {},

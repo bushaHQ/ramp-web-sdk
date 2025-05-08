@@ -1,1 +1,1 @@
-export { default as BushaRamp } from "./BushaRamp";
+export { default as BushaRampWidget } from "./BushaRampWidget";

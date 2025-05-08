@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { page } from "@vitest/browser/context";
-import BushaRamp from "../BushaRamp";
+import BushaRampWidget from "../BushaRampWidget";
 import {
   COMPLETED_STATUS,
   CANCELLED_STATUS,
@@ -11,7 +11,7 @@ import {
 } from "../constants/variables";
 import { QuotePayload } from "../types";
 
-describe("BushaRamp", () => {
+describe("BushaRampWidget", () => {
   let mockOnSuccess: ReturnType<typeof vi.fn>;
   let mockOnClose: ReturnType<typeof vi.fn>;
   let mockPayload: QuotePayload;
@@ -45,19 +45,19 @@ describe("BushaRamp", () => {
   });
 
   it("should initialize with valid payload", () => {
-    const ramp = new BushaRamp(mockPayload);
-    expect(ramp).toBeInstanceOf(BushaRamp);
+    const ramp = new BushaRampWidget(mockPayload);
+    expect(ramp).toBeInstanceOf(BushaRampWidget);
   });
 
   it("should throw error with invalid payload", () => {
     const invalidPayload = { ...mockPayload, publicKey: "" };
-    expect(() => new BushaRamp(invalidPayload)).toThrow(
+    expect(() => new BushaRampWidget(invalidPayload)).toThrow(
       "Public key is required"
     );
   });
 
   it("should show the ramp widget", async () => {
-    const ramp = new BushaRamp(mockPayload);
+    const ramp = new BushaRampWidget(mockPayload);
     ramp.show();
 
     const container = page.getByTestId(CONTAINER_ID);
@@ -68,7 +68,7 @@ describe("BushaRamp", () => {
   });
 
   it("should handle initialization message", async () => {
-    const ramp = new BushaRamp(mockPayload);
+    const ramp = new BushaRampWidget(mockPayload);
     ramp.show();
 
     const loader = page.getByTestId(LOADER_ID);
@@ -82,7 +82,7 @@ describe("BushaRamp", () => {
   });
 
   it("should handle completion message", async () => {
-    const ramp = new BushaRamp(mockPayload);
+    const ramp = new BushaRampWidget(mockPayload);
     ramp.show();
 
     const completionData = {
@@ -104,7 +104,7 @@ describe("BushaRamp", () => {
   });
 
   it("should handle cancellation message", async () => {
-    const ramp = new BushaRamp(mockPayload);
+    const ramp = new BushaRampWidget(mockPayload);
     ramp.show();
 
     const cancellationData = {
@@ -126,7 +126,7 @@ describe("BushaRamp", () => {
   });
 
   it("should close the widget when close button is clicked", async () => {
-    const ramp = new BushaRamp(mockPayload);
+    const ramp = new BushaRampWidget(mockPayload);
     ramp.show();
 
     const closeButton = page.getByTestId(CLOSE_BUTTON_ID);
@@ -147,7 +147,7 @@ describe("BushaRamp", () => {
   });
 
   it("should ignore messages from different origins", async () => {
-    const ramp = new BushaRamp(mockPayload);
+    const ramp = new BushaRampWidget(mockPayload);
     ramp.show();
 
     const messageEvent = new MessageEvent("message", {

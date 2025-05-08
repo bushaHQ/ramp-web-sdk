@@ -1,4 +1,4 @@
-import { BushaRamp } from "lib";
+import { BushaRampWidget } from "lib";
 import { useState } from "react";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   };
 
   const handleSubmit = () => {
-    const ramp = new BushaRamp({
+    const ramp = new BushaRampWidget({
       ...config,
       onSuccess(d) {
         console.log(d);
