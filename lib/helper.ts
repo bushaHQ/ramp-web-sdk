@@ -152,8 +152,11 @@ export function createFormEl(payload: FormPayload) {
   formEl.style.display = "none";
 
   const parsePayload = (p: FormPayload) => {
+    const excludeKeys = ["onSuccess", "onClose"];
+    
     for (const key in p) {
       if (!Object.prototype.hasOwnProperty.call(p, key)) continue;
+      if (excludeKeys.includes(key)) continue;
 
       const paymentParamValue = p[key as keyof FormPayload];
 

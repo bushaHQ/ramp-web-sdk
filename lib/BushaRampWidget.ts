@@ -46,9 +46,7 @@ export default class BushaRamp {
 
     document.body.appendChild(this.container);
 
-    const { onClose, onSuccess, ...rest } = this.payload;
-
-    const iframeForm = createFormEl(rest);
+    const iframeForm = createFormEl(this.payload);
 
     this.container.appendChild(iframeForm);
 
