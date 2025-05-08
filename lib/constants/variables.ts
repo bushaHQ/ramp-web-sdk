@@ -5,7 +5,8 @@ export const CLOSE_BUTTON_ID = "busha-ramp-close-btn";
 export const IFRAME_ID = "busha-ramp-iframe";
 export const FORM_ID = "busha-ramp-form";
 
-export const PAY_UI = import.meta.env.VITE_PAYMENT_UI;
+export const BUY_UI = import.meta.env.VITE_BUY_UI;
+export const SELL_UI = import.meta.env.VITE_SELL_UI;
 
 export const INITIALIZED_STATUS = "INITIALIZED";
 

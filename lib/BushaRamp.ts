@@ -6,7 +6,6 @@ import {
   INITIALIZED_STATUS,
   LOADER_ID,
   BUY_UI,
-  SELL_UI,
 } from "./constants/variables";
 import {
   injectGlobalStyles,
@@ -19,7 +18,7 @@ import {
 } from "./helper";
 import { QuotePayload, MessageType } from "./types";
 
-export default class BushaRamp {
+export default class BushaRampWidget {
   private payload: QuotePayload;
   private container: HTMLElement | null = null;
   private boundClose: () => void;
@@ -47,7 +46,9 @@ export default class BushaRamp {
 
     document.body.appendChild(this.container);
 
-    const iframeForm = createFormEl(this.payload);
+    const { onClose, onSuccess, ...rest } = this.payload;
+
+    const iframeForm = createFormEl(rest);
 
     this.container.appendChild(iframeForm);
 
@@ -84,11 +85,9 @@ export default class BushaRamp {
   private onMessage = (e: MessageEvent<MessageType>) => {
     // In test mode, accept messages from window.postMessage
     const isTestMode = process.env.NODE_ENV === "test";
-    const PAY_UI = this.payload.side === "buy" ? BUY_UI : SELL_UI;
-
     if (!isTestMode) {
-      if (!PAY_UI) return;
-      const payUrl = new URL(PAY_UI);
+      if (!BUY_UI) return;
+      const payUrl = new URL(BUY_UI);
       if (e.origin !== payUrl.origin) return;
     } else {
       // In test mode, only accept messages from window.postMessage

@@ -6,9 +6,10 @@ import {
   CONTAINER_ID,
   LOADER_ID,
   CLOSE_BUTTON_ID,
-  PAY_UI,
+  BUY_UI,
   IFRAME_ID,
   FORM_ID,
+  SELL_UI,
 } from "./constants/variables";
 import { QuotePayload } from "./types";
 import { close } from "./constants/icons";
@@ -136,7 +137,7 @@ export function createIframeEl() {
   iframeEl.dataset.testid = IFRAME_ID;
   iframeEl.name = IFRAME_ID;
   iframeEl.id = IFRAME_ID;
-  iframeEl.allow = `clipboard-write self ${PAY_UI}`;
+  iframeEl.allow = `clipboard-write self ${BUY_UI}`;
 
   return iframeEl;
 }
@@ -144,6 +145,8 @@ export function createIframeEl() {
 type FormPayload = Omit<QuotePayload, "onClose" | "onSuccess">;
 
 export function createFormEl(payload: FormPayload) {
+  const PAY_UI = payload.side === "buy" ? BUY_UI : SELL_UI;
+
   const formEl = document.createElement("form");
   formEl.target = IFRAME_ID;
   formEl.dataset.testid = FORM_ID;
@@ -152,8 +155,13 @@ export function createFormEl(payload: FormPayload) {
   formEl.style.display = "none";
 
   const parsePayload = (p: FormPayload) => {
+    const isProductionMode = process.env.NODE_ENV === "production";
+
     const excludeKeys = ["onSuccess", "onClose"];
-    
+    if (isProductionMode) {
+      excludeKeys.push("side");
+    }
+
     for (const key in p) {
       if (!Object.prototype.hasOwnProperty.call(p, key)) continue;
       if (excludeKeys.includes(key)) continue;
