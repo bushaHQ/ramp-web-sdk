@@ -1,8 +1,39 @@
 {
-  "name": "busha-ramp-web-sdk",
-  "private": true,
-  "version": "1.0.0-beta.1",
+  "name": "@busha/ramp-web-sdk",
+  "version": "0.1.0",
+  "description": "Official Busha Ramp Web SDK for integrating cryptocurrency on-ramp functionality into web applications",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "busha",
+    "ramp",
+    "cryptocurrency",
+    "on-ramp",
+    "web-sdk",
+    "typescript",
+    "react"
+  ],
+  "author": "Busha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/busha-labs/busha-ramp-web-sdk.git"
+  },
+  "homepage": "https://github.com/busha-labs/busha-ramp-web-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/busha-labs/busha-ramp-web-sdk/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,7 +41,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "release": "npm version patch && git push origin main && git push origin --tags"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
