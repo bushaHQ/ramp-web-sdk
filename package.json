@@ -1,6 +1,6 @@
 {
   "name": "@busha/ramp-web-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Official Busha Ramp Web SDK for integrating cryptocurrency on-ramp functionality into web applications",
   "type": "module",
   "main": "./dist/index.js",
@@ -28,11 +28,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/busha-labs/busha-ramp-web-sdk.git"
+    "url": "https://github.com/bushaHQ/ramp-web-sdk.git"
   },
-  "homepage": "https://github.com/busha-labs/busha-ramp-web-sdk#readme",
+  "homepage": "https://github.com/bushaHQ/ramp-web-sdk#readme",
   "bugs": {
-    "url": "https://github.com/busha-labs/busha-ramp-web-sdk/issues"
+    "url": "https://github.com/bushaHQ/ramp-web-sdk/issues"
   },
   "scripts": {
     "dev": "vite",
