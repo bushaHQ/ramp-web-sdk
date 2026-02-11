@@ -17,7 +17,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "lib/index.ts"),
-      name: "BushaRampWebSDK",
+      name: "BushaRampWidget",
       fileName: (format) => `index.${format}.js`,
       formats: ["es", "umd"],
     },

@@ -1,14 +1,21 @@
 {
   "name": "@busha/ramp-web-sdk",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Official Busha Ramp Web SDK for integrating cryptocurrency on-ramp functionality into web applications",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.umd.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
+      "import": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./es": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./umd": {
+      "import": "./dist/index.umd.js",
       "types": "./dist/index.d.ts"
     }
   },
