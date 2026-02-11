@@ -5,6 +5,12 @@ on:
     tags:
       - 'v*'
 
+env:
+  VITE_BUY_UI: ${{ vars.VITE_BUY_UI }}
+  VITE_BUY_SANDBOX_UI: ${{ vars.VITE_BUY_SANDBOX_UI }}
+  VITE_SELL_UI: ${{ vars.VITE_SELL_UI }}
+  VITE_SELL_SANDBOX_UI: ${{ vars.VITE_SELL_SANDBOX_UI }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
