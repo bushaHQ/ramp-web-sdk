@@ -10,6 +10,8 @@ import {
   IFRAME_ID,
   FORM_ID,
   SELL_UI,
+  BUY_SANDBOX_UI,
+  SELL_SANDBOX_UI,
 } from "./constants/variables";
 import { QuotePayload } from "./types";
 import { close } from "./constants/icons";
@@ -142,10 +144,13 @@ export function createIframeEl() {
   return iframeEl;
 }
 
-type FormPayload = Omit<QuotePayload, "onClose" | "onSuccess">;
+type FormPayload = Omit<QuotePayload, "onClose" | "onSuccess" | "sandbox">;
 
-export function createFormEl(payload: FormPayload) {
-  const PAY_UI = payload.side === "buy" ? BUY_UI : SELL_UI;
+export function createFormEl({ sandbox, ...payload }: FormPayload & { sandbox?: boolean }) {
+  const isSandbox = sandbox ?? false;
+  const buyUi = isSandbox ? BUY_SANDBOX_UI : BUY_UI;
+  const sellUi = isSandbox ? SELL_SANDBOX_UI : SELL_UI;
+  const PAY_UI = payload.side === "buy" ? buyUi : sellUi;
 
   const formEl = document.createElement("form");
   formEl.target = IFRAME_ID;

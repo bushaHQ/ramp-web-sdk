@@ -7,6 +7,8 @@ import {
   LOADER_ID,
   BUY_UI,
   SELL_UI,
+  SELL_SANDBOX_UI,
+  BUY_SANDBOX_UI,
 } from "./constants/variables";
 import {
   injectGlobalStyles,
@@ -84,7 +86,10 @@ export default class BushaRamp {
   private onMessage = (e: MessageEvent<MessageType>) => {
     // In test mode, accept messages from window.postMessage
     const isTestMode = process.env.NODE_ENV === "test";
-    const PAY_UI = this.payload.side === "buy" ? BUY_UI : SELL_UI;
+    const isSandbox = this.payload.sandboxMode ?? false;
+    const buyUi = isSandbox ? BUY_SANDBOX_UI : BUY_UI;
+    const sellUi = isSandbox ? SELL_SANDBOX_UI : SELL_UI;
+    const PAY_UI = this.payload.side === "buy" ? buyUi : sellUi;
 
     if (!isTestMode) {
       if (!PAY_UI) return;

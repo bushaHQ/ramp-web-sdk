@@ -7,6 +7,8 @@ export const FORM_ID = "busha-ramp-form";
 
 export const BUY_UI = import.meta.env.VITE_BUY_UI;
 export const SELL_UI = import.meta.env.VITE_SELL_UI;
+export const BUY_SANDBOX_UI = import.meta.env.VITE_BUY_SANDBOX_UI;
+export const SELL_SANDBOX_UI = import.meta.env.VITE_SELL_SANDBOX_UI;
 
 export const INITIALIZED_STATUS = "INITIALIZED";
 

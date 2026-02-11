@@ -142,6 +142,7 @@ function App() {
 | `amount` | `number` | ❌ | Pre-filled amount |
 | `currency` | `string` | ❌ | Default currency (e.g., 'USD') |
 | `cryptoCurrency` | `string` | ❌ | Default crypto currency (e.g., 'BTC') |
+| `sandboxMode` | `boolean` | ❌ | Sandbox mode, defaults to false |
 
 ### Methods
 
@@ -161,7 +162,7 @@ function App() {
 
 ```bash
 # Clone the repository
-git clone https://github.com/busha-labs/busha-ramp-web-sdk.git
+git clone https://github.com/bushaHQ/ramp-web-sdk.git
 cd busha-ramp-web-sdk
 
 # Install dependencies
@@ -234,7 +235,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## 📞 Support
 
 - **Documentation**: [https://docs.busha.co](https://docs.busha.co)
-- **Issues**: [GitHub Issues](https://github.com/busha-labs/busha-ramp-web-sdk/issues)
+- **Issues**: [GitHub Issues](https://github.com/bushaHQ/ramp-web-sdk/issues)
 - **Email**: support@busha.co
 
 ## 🔗 Links
