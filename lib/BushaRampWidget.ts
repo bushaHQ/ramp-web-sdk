@@ -21,7 +21,7 @@ import {
 } from "./helper";
 import { QuotePayload, MessageType } from "./types";
 
-export default class BushaRamp {
+export default class BushaRampWidget {
   private payload: QuotePayload;
   private container: HTMLElement | null = null;
   private boundClose: () => void;
