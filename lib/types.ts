@@ -1,6 +1,6 @@
 export type MessageType = {
   status: string;
-  data?: any;
+  data?: unknown;
 };
 
 export interface QuotePayload {
@@ -13,6 +13,7 @@ export interface QuotePayload {
   address?: string;
   network?: string;
   redirectUrl?: string;
-  onClose?: (d?: any) => void;
-  onSuccess: (d?: any) => void;
+  onClose?: (d?: unknown) => void;
+  onSuccess: (d?: unknown) => void;
+  sandboxMode?: boolean;
 }
