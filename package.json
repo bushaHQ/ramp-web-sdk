@@ -1,6 +1,6 @@
 {
   "name": "@busha/ramp-web-sdk",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Official Busha Ramp Web SDK for integrating cryptocurrency on-ramp functionality into web applications",
   "type": "module",
   "main": "./dist/index.umd.js",
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build && tsc -p tsconfig.lib.json",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
