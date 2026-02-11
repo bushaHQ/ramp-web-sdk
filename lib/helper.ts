@@ -69,7 +69,7 @@ export function validatePayload(p: QuotePayload) {
     fiatCurrency: string().optional(),
     cryptoAmount: string().optional(),
     cryptoCurrency: string().optional(),
-    publicKey: string().required("Public key is required"),
+    publicKey: string().optional(),
     redirectUrl: string().optional(),
     side: string().oneOf(["buy", "sell"]).required(),
   });
