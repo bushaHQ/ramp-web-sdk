@@ -144,10 +144,10 @@ export function createIframeEl() {
   return iframeEl;
 }
 
-type FormPayload = Omit<QuotePayload, "onClose" | "onSuccess" | "sandbox">;
+type FormPayload = Omit<QuotePayload, "onClose" | "onSuccess" | "sandboxMode">;
 
-export function createFormEl({ sandbox, ...payload }: FormPayload & { sandbox?: boolean }) {
-  const isSandbox = sandbox ?? false;
+export function createFormEl({ sandboxMode, ...payload }: FormPayload & { sandboxMode?: boolean }) {
+  const isSandbox = sandboxMode ?? false;
   const buyUi = isSandbox ? BUY_SANDBOX_UI : BUY_UI;
   const sellUi = isSandbox ? SELL_SANDBOX_UI : SELL_UI;
   const PAY_UI = payload.side === "buy" ? buyUi : sellUi;
