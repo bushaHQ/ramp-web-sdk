@@ -7,7 +7,7 @@ export interface QuotePayload {
   fiatAmount?: string;
   cryptoAmount?: string;
   fiatCurrency?: string;
-  cryptoCurrency?: string;
+  cryptoAsset?: string;
   side: "buy" | "sell";
   publicKey?: string;
   address?: string;
