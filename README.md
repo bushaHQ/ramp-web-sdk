@@ -141,7 +141,7 @@ function App() {
 | `onError` | `function` | ❌ | Callback when an error occurs |
 | `amount` | `number` | ❌ | Pre-filled amount |
 | `currency` | `string` | ❌ | Default currency (e.g., 'USD') |
-| `cryptoCurrency` | `string` | ❌ | Default crypto currency (e.g., 'BTC') |
+| `cryptoAsset` | `string` | ❌ | Default crypto currency (e.g., 'BTC') |
 | `sandboxMode` | `boolean` | ❌ | Sandbox mode, defaults to false |
 
 ### Methods
