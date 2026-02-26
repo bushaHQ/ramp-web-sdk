@@ -104,8 +104,12 @@ export default class BushaRampWidget {
 
     if (e.data.status === INITIALIZED_STATUS) {
       const loader = document.getElementById(LOADER_ID);
+      const closeBtn = document.getElementById(CLOSE_BUTTON_ID);
       if (loader) {
         loader.remove();
+      }
+      if (closeBtn) {
+        closeBtn.remove();
       }
     }
 
